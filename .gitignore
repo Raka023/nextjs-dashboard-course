@@ -6,8 +6,8 @@
 .pnp.js
 
 # testing
-/seed
-/query
+app/seed
+app/query
 /coverage
 
 # next.js

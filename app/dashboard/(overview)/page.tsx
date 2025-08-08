@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { lusitana } from '@/app/ui/fonts';
 import CardWrapper from '@/app/ui/dashboard/cards';
@@ -8,6 +9,10 @@ import {
   RevenueChartSkeleton, 
   CardsSkeleton, 
 } from '@/app/ui/skeletons';
+
+export const metadata: Metadata = {
+  title: 'Home',
+};
  
 export default async function Page() {
   return (

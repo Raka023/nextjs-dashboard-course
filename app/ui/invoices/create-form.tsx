@@ -14,7 +14,10 @@ import { Button } from '@/app/ui/button';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState: State = { message: null, errors: {} }
-  const [state, formAction] = useActionState(createInvoice, initialState);
+  const [state, formAction] = useActionState(
+    (prevState: State, formData: FormData) => createInvoice(prevState, formData),
+    initialState
+  );
 
   return (
     <form action={formAction}>

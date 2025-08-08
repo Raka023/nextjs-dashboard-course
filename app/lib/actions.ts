@@ -34,7 +34,7 @@ export async function createInvoice(formData: FormData) {
     `;
   } catch(ex) {
     console.error(ex);
-    throw new Error('Error creating invoice' + ex);
+    throw new Error('Error creating invoice: ' + ex);
   }
   
   revalidatePath('/dashboard/invoices');
@@ -58,7 +58,7 @@ export async function updateInvoice(id: string, formData: FormData) {
     `;
   } catch(ex) {
     console.error(ex);
-    throw new Error('Error updating invoice' + ex);
+    throw new Error('Error updating invoice: ' + ex);
   }
  
   revalidatePath('/dashboard/invoices');
@@ -66,10 +66,15 @@ export async function updateInvoice(id: string, formData: FormData) {
 }
 
 export async function deleteInvoice(id: string) {
-  await sql`
-    DELETE FROM invoices
-    WHERE id = ${id}
-  `;
+  try {
+    await sql`
+      DELETE FROM invoices
+      WHERE id = ${id}
+    `;
+  } catch(ex) {
+    console.error(ex);
+    throw new Error('Error deleting invoice: ' + ex);
+  }
 
   revalidatePath('/dashboard/invoices');
 }
